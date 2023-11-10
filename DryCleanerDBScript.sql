@@ -66,28 +66,6 @@ CREATE TABLE `loginLog` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `refreshTokenEntities`
---
-
-DROP TABLE IF EXISTS `refreshTokenEntities`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `refreshTokenEntities` (
-  `Id` int NOT NULL AUTO_INCREMENT,
-  `UserId` int NOT NULL,
-  `RefreshToken` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `Expires` datetime(6) NOT NULL,
-  `CreatedOn` datetime(6) NOT NULL,
-  `CreatedByID` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `ReplaceByToken` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `IsDeleted` tinyint(1) NOT NULL,
-  `IsActive` tinyint(1) NOT NULL,
-  `CompanyId` int NOT NULL,
-  PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Table structure for table `users`
 --
 
