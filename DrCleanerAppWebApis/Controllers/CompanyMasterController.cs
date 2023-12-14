@@ -1,13 +1,15 @@
 ﻿using DryCleanerAppBuisinessLogic.Interfaces;
 using DryCleanerAppDataAccess.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace DrCleanerAppWebApis.Controllers
 {
-    [Route("api/[controller]/[action]")]
+
     [ApiController]
+    [Authorize]
     public class CompanyMasterController : ControllerBase
     {
         readonly ICompanyB _companyB;
@@ -15,9 +17,14 @@ namespace DrCleanerAppWebApis.Controllers
         {
             _companyB = companyB;
         }
+        #region API Call
+        /// <summary>
+        /// Getting all company Masters
+        /// </summary>
+        /// <param name="CommonSearchParam"></param>
+        /// <returns>List of CompanyListModel</returns>
+        [HttpPost, Route("companymaster/getallcompanymasters")]
 
-        [HttpPost]
-        [Route("api/companymaster/getallcompanymasters")]
         public async Task<IActionResult> GetAllCompanyMasters(CommonSearchParam param)
         {
             try
@@ -58,8 +65,12 @@ namespace DrCleanerAppWebApis.Controllers
             }
         }
 
-        [HttpPost]
-        [Route("api/companymaster/getcompanybyid")]
+        /// <summary>
+        /// Getting Company Master Details By Id
+        /// </summary>
+        /// <param name="IdParam"></param>
+        /// <returns>CompanyListModel</returns>
+        [HttpPost, Route("companymaster/getcompanybyid")]
         public async Task<IActionResult> GetCompanyById(IdParam param)
         {
             try
@@ -100,8 +111,12 @@ namespace DrCleanerAppWebApis.Controllers
             }
         }
 
-        [HttpPost]
-        [Route("api/companymaster/createcompany")]
+        /// <summary>
+        /// Creating New Company
+        /// </summary>
+        /// <param name="CompanyParam"></param>
+        /// <returns>Success / Failed </returns>
+        [HttpPost, Route("companymaster/createcompany")]
         public async Task<IActionResult> CreateCompany(CompanyParam param)
         {
             try
@@ -142,8 +157,12 @@ namespace DrCleanerAppWebApis.Controllers
             }
         }
 
-        [HttpPost]
-        [Route("api/companymaster/updatecompany")]
+        /// <summary>
+        /// Updating Company Master
+        /// </summary>
+        /// <param name="CompanyListModel"></param>
+        /// <returns>Success / Failed </returns>
+        [HttpPost, Route("companymaster/updatecompany")]
         public async Task<IActionResult> UpdateCompany(CompanyListModel param)
         {
             try
@@ -184,8 +203,12 @@ namespace DrCleanerAppWebApis.Controllers
             }
         }
 
-        [HttpPost]
-        [Route("api/companymaster/deletecompanybyid")]
+        /// <summary>
+        /// Deleting Company Master
+        /// </summary>
+        /// <param name="IdParam"></param>
+        /// <returns>Success/ Failed</returns>
+        [HttpPost, Route("companymaster/deletecompanybyid")]
         public async Task<IActionResult> DeleteCompanyById(IdParam param)
         {
             try
@@ -225,5 +248,7 @@ namespace DrCleanerAppWebApis.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, ex);
             }
         }
+
+        #endregion
     }
 }

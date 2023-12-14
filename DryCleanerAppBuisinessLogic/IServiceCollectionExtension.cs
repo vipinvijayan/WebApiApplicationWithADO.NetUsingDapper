@@ -15,6 +15,8 @@ namespace DryCleanerAppBuisinessLogic
         {
             //Always use Transient for multi threading purpose
             services.AddTransient(typeof(ICompanyRepository), typeof(CompanyRepository));
+            services.AddTransient(typeof(ISecurityRepository), typeof(SecurityRepository));
+            services.AddTransient(typeof(IUserRepository), typeof(UserRepository));
             return services;
         }
     }
